@@ -1,46 +1,45 @@
-
-import React, { useState } from 'react';
-import { 
-  Box, 
-  Container, 
-  Typography, 
-  Button, 
-  Paper, 
+import React, { useState } from "react";
+import {
+  Box,
+  Container,
+  Typography,
+  Button,
+  Paper,
   Grid,
   Stack,
   useTheme,
   ThemeProvider,
   createTheme,
-  CssBaseline
-} from '@mui/material';
-import { CloudUpload, DeleteOutline, FileDownload } from '@mui/icons-material';
+  CssBaseline,
+} from "@mui/material";
+import { CloudUpload, DeleteOutline, FileDownload } from "@mui/icons-material";
 
 // Create a custom theme
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#3f51b5',
+      main: "#3f51b5",
     },
     secondary: {
-      main: '#f50057',
+      main: "#f50057",
     },
     background: {
-      default: '#f5f5f5',
+      default: "#f5f5f5",
     },
   },
   typography: {
     fontFamily: '"Segoe UI", "Roboto", "Helvetica", "Arial", sans-serif',
     h1: {
-      fontSize: '3rem',
+      fontSize: "3rem",
       fontWeight: 700,
-      marginBottom: '1rem',
+      marginBottom: "1rem",
     },
     h2: {
-      fontSize: '2rem',
+      fontSize: "2rem",
       fontWeight: 600,
     },
     body1: {
-      fontSize: '1rem',
+      fontSize: "1rem",
     },
   },
   components: {
@@ -48,12 +47,12 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           borderRadius: 8,
-          textTransform: 'none',
-          padding: '10px 24px',
+          textTransform: "none",
+          padding: "10px 24px",
           fontWeight: 600,
         },
         contained: {
-          boxShadow: 'none',
+          boxShadow: "none",
         },
       },
     },
@@ -69,7 +68,7 @@ const theme = createTheme({
 
 const Index = () => {
   const [file, setFile] = useState<File | null>(null);
-  
+
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
       setFile(event.target.files[0]);
@@ -81,8 +80,8 @@ const Index = () => {
       <CssBaseline />
       <Box
         sx={{
-          minHeight: '100vh',
-          background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
+          minHeight: "100vh",
+          background: "linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)",
           py: 8,
         }}
       >
@@ -94,7 +93,8 @@ const Index = () => {
                   Remove Image Backgrounds
                 </Typography>
                 <Typography variant="h5" color="text.secondary" sx={{ mb: 4 }}>
-                  Fast, easy, and high-quality background removal with our advanced AI technology.
+                  Fast, easy, and high-quality background removal with our
+                  advanced AI technology.
                 </Typography>
                 <Stack direction="row" spacing={2}>
                   <Button
@@ -112,33 +112,31 @@ const Index = () => {
                       onChange={handleFileChange}
                     />
                   </Button>
-                  <Button
-                    variant="outlined"
-                    color="primary"
-                    size="large"
-                  >
+                  <Button variant="outlined" color="primary" size="large">
                     Learn More
                   </Button>
                 </Stack>
               </Box>
             </Grid>
-            
+
             <Grid item xs={12} md={6}>
-              <Paper 
+              <Paper
                 elevation={6}
                 sx={{
                   p: 4,
-                  height: '400px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                  height: "400px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  backgroundColor: "rgba(255, 255, 255, 0.9)",
                 }}
               >
                 {!file ? (
-                  <Box sx={{ textAlign: 'center' }}>
-                    <CloudUpload sx={{ fontSize: 80, color: 'primary.main', mb: 2 }} />
+                  <Box sx={{ textAlign: "center" }}>
+                    <CloudUpload
+                      sx={{ fontSize: 80, color: "primary.main", mb: 2 }}
+                    />
                     <Typography variant="h6" gutterBottom>
                       Drag & Drop or Upload Your Image
                     </Typography>
@@ -161,21 +159,21 @@ const Index = () => {
                     </Button>
                   </Box>
                 ) : (
-                  <Box sx={{ width: '100%', textAlign: 'center' }}>
+                  <Box sx={{ width: "100%", textAlign: "center" }}>
                     <Box
                       component="img"
                       src={URL.createObjectURL(file)}
                       alt="Uploaded image"
                       sx={{
-                        maxWidth: '100%',
-                        maxHeight: '280px',
+                        maxWidth: "100%",
+                        maxHeight: "280px",
                         mb: 3,
                         borderRadius: 2,
                       }}
                     />
                     <Stack direction="row" spacing={2} justifyContent="center">
                       <Button
-                        variant="contained" 
+                        variant="contained"
                         color="primary"
                         startIcon={<FileDownload />}
                       >
@@ -204,27 +202,30 @@ const Index = () => {
               {[
                 {
                   title: "Upload",
-                  description: "Upload any image with a background you want to remove"
+                  description:
+                    "Upload any image with a background you want to remove",
                 },
                 {
                   title: "Process",
-                  description: "Our AI automatically detects and removes the background"
+                  description:
+                    "Our AI automatically detects and removes the background",
                 },
                 {
                   title: "Download",
-                  description: "Download your image with a transparent background"
-                }
+                  description:
+                    "Download your image with a transparent background",
+                },
               ].map((step, index) => (
                 <Grid item xs={12} md={4} key={index}>
                   <Paper
                     elevation={3}
                     sx={{
                       p: 4,
-                      height: '100%',
-                      textAlign: 'center',
-                      transition: 'transform 0.3s',
-                      '&:hover': {
-                        transform: 'translateY(-8px)',
+                      height: "100%",
+                      textAlign: "center",
+                      transition: "transform 0.3s",
+                      "&:hover": {
+                        transform: "translateY(-8px)",
                       },
                     }}
                   >
@@ -232,10 +233,10 @@ const Index = () => {
                       variant="h1"
                       component="div"
                       sx={{
-                        color: 'primary.main',
+                        color: "primary.main",
                         opacity: 0.2,
-                        fontSize: '5rem',
-                        fontWeight: 'bold',
+                        fontSize: "5rem",
+                        fontWeight: "bold",
                         mb: 2,
                       }}
                     >
