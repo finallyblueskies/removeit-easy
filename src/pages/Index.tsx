@@ -1,18 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import {
   Box,
   Container,
   Typography,
   Button,
   Paper,
-  Grid,
   Stack,
   useTheme,
   ThemeProvider,
   createTheme,
   CssBaseline,
 } from "@mui/material";
+import Grid from "@mui/material/Grid2";
 import { CloudUpload, DeleteOutline, FileDownload } from "@mui/icons-material";
+import BackgroundRemovalPreview from "../components/BackgroundRemovalPreview";
 
 // Create a custom theme
 const theme = createTheme({
@@ -75,6 +76,11 @@ const Index = () => {
     }
   };
 
+  const scrollToUploadSection = () => {
+    const uploadSection = document.getElementById("upload-section");
+    uploadSection?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -85,9 +91,78 @@ const Index = () => {
           py: 8,
         }}
       >
-        <Container maxWidth="lg">
+        {/* Hero Section with Background Removal Preview */}
+        <Container
+          maxWidth="lg"
+          sx={{
+            pb: 8,
+            mb: 4,
+            borderBottom: "1px solid",
+            borderColor: "grey.400",
+          }}
+        >
+          <Grid container spacing={4}>
+            <Grid size={{ xs: 12, md: 6 }}>
+              <Box
+                sx={{
+                  position: "relative",
+                  height: "500px",
+                  overflow: "hidden",
+                  mb: { xs: 4, md: 0 },
+                  borderRadius: "16px",
+                  boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
+                }}
+              >
+                <BackgroundRemovalPreview
+                  primaryImage="/hero-man.jpg"
+                  secondaryImage="/hero-man-nobg.jpg"
+                  sx={{
+                    height: "100%",
+                    width: "100%",
+                  }}
+                />
+              </Box>
+            </Grid>
+            <Grid size={{ xs: 12, md: 6 }}>
+              <Box
+                sx={{
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  p: 4,
+                }}
+              >
+                <Typography variant="h2" sx={{ fontWeight: 700, mb: 2 }}>
+                  See the Difference Instantly
+                </Typography>
+                <Typography variant="h6" sx={{ mb: 4, maxWidth: "600px" }}>
+                  Slide to compare original and background-removed images. Try
+                  it with your own photos!
+                </Typography>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  size="large"
+                  onClick={scrollToUploadSection}
+                  sx={{
+                    px: 4,
+                    py: 1.5,
+                    fontSize: "1.1rem",
+                    boxShadow: "0 4px 14px rgba(63, 81, 181, 0.4)",
+                    alignSelf: "flex-start",
+                  }}
+                >
+                  Try It Now
+                </Button>
+              </Box>
+            </Grid>
+          </Grid>
+        </Container>
+
+        <Container maxWidth="lg" sx={{ mt: 10 }}>
           <Grid container spacing={6}>
-            <Grid item xs={12} md={6}>
+            <Grid size={{ xs: 12, md: 6 }}>
               <Box sx={{ mt: { xs: 2, md: 10 } }}>
                 <Typography variant="h1" color="primary" gutterBottom>
                   Remove Image Backgrounds
@@ -119,7 +194,7 @@ const Index = () => {
               </Box>
             </Grid>
 
-            <Grid item xs={12} md={6}>
+            <Grid size={{ xs: 12, md: 6 }} id="upload-section">
               <Paper
                 elevation={6}
                 sx={{
@@ -216,7 +291,7 @@ const Index = () => {
                     "Download your image with a transparent background",
                 },
               ].map((step, index) => (
-                <Grid item xs={12} md={4} key={index}>
+                <Grid size={{ xs: 12, md: 4 }}>
                   <Paper
                     elevation={3}
                     sx={{
